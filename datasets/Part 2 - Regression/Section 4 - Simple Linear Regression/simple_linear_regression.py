@@ -32,7 +32,7 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 """
 
-# Crear modelo de Regresión Lienal Simple con el conjunto de entrenamiento
+# Crear modelo de Regresión Lineal Simple con el conjunto de entrenamiento
 from sklearn.linear_model import LinearRegression
 regression = LinearRegression()
 regression.fit(X_train, y_train)
