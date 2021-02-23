@@ -20,11 +20,17 @@ y = dataset.iloc[:, 4].values
 
 
 # Codificar datos categóricos
+""" Deprecated
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 labelencoder_X = LabelEncoder()
 X[:, 3] = labelencoder_X.fit_transform(X[:, 3])
 onehotencoder = OneHotEncoder(categorical_features=[3])
 X = onehotencoder.fit_transform(X).toarray()
+"""
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+ct = ColumnTransformer([("State", OneHotEncoder(), [3])], remainder = 'passthrough')
+X = ct.fit_transform(X)
 
 # Evitar la trampa de las variables ficticias
 X = X[:, 1:]
@@ -49,7 +55,7 @@ regression.fit(X_train, y_train)
 y_pred = regression.predict(X_test)
 
 # Construir el modelo óptimo de RLM utilizando la Eliminación hacia atrás
-import statsmodels.formula.api as sm
+import statsmodels.api as sm
 X = np.append(arr = np.ones((50,1)).astype(int), values = X, axis = 1)
 SL = 0.05
 

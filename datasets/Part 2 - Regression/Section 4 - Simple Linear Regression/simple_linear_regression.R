@@ -16,14 +16,14 @@ testing_set = subset(dataset, split == FALSE)
 # training_set[,2:3] = scale(training_set[,2:3])
 # testing_set[,2:3] = scale(testing_set[,2:3])
 
-# Ajustar el modelo de regresiÃ³n lineal simple con el conjunto de entrenamiento
+# Ajustar el modelo de regresión lineal simple con el conjunto de entrenamiento
 regressor = lm(formula = Salary ~ YearsExperience,
                data = training_set)
 
 # Predecir resultados con el conjunto de test
 y_pred = predict(regressor, newdata = testing_set)
 
-# VisualizaciÃ³n de los resultados en el conjunto de entrenamiento
+# Visualización de los resultados en el conjunto de entrenamiento
 #install.packages("ggplot2")
 library(ggplot2)
 ggplot() + 
@@ -32,19 +32,19 @@ ggplot() +
   geom_line(aes(x = training_set$YearsExperience, 
                 y = predict(regressor, newdata = training_set)),
             colour = "blue") +
-  ggtitle("Sueldo vs AÃ±os de Experiencia (Conjunto de Entrenamiento)") +
-  xlab("AÃ±os de Experiencia") +
+  ggtitle("Sueldo vs Años de Experiencia (Conjunto de Entrenamiento)") +
+  xlab("Años de Experiencia") +
   ylab("Sueldo (en $)")
 
-# VisualizaciÃ³n de los resultados en el conjunto de testing
+# Visualización de los resultados en el conjunto de testing
 ggplot() + 
   geom_point(aes(x = testing_set$YearsExperience, y = testing_set$Salary),
              colour = "red") +
   geom_line(aes(x = training_set$YearsExperience, 
                 y = predict(regressor, newdata = training_set)),
             colour = "blue") +
-  ggtitle("Sueldo vs AÃ±os de Experiencia (Conjunto de Testing)") +
-  xlab("AÃ±os de Experiencia") +
+  ggtitle("Sueldo vs Años de Experiencia (Conjunto de Testing)") +
+  xlab("Años de Experiencia") +
   ylab("Sueldo (en $)")
-
+# summary(regressor)
 
